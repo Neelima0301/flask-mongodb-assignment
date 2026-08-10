@@ -8,5 +8,10 @@
         "id": 2,
         "name": "Student 2",
         "course": "Computer Science"
+    },
+    {
+        "id": 3,
+        "name": "Student 3",
+        "course": "Data Science"
     }
 ]
