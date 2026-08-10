@@ -13,6 +13,7 @@ client = MongoClient(mongo_uri)
 
 database = client["studentDB"]
 collection = database["students"]
+todo_collection = database["todoitems"]
 
 
 @app.route("/")
@@ -53,6 +54,30 @@ def submit():
 def success():
     return render_template("success.html")
 
+@app.route("/api/todos", methods=["GET"])
+def get_todos():
+    todos = list(todo_collection.find({}, {"_id": 0}))
+    return jsonify(todos)
 
+@app.route("/submittodoitem", methods=["POST"])
+def submit_todo_item():
+    try:
+        item_name = request.form["itemName"]
+        item_description = request.form["itemDescription"]
+
+        todo_item = {
+            "itemName": item_name,
+            "itemDescription": item_description
+        }
+
+        todo_collection.insert_one(todo_item)
+
+        return "To-Do item submitted successfully"
+
+    except Exception as e:
+        return str(e), 500
+    
 if __name__ == "__main__":
     app.run(debug=True)
+
+    
