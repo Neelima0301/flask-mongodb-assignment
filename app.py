@@ -3,6 +3,8 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 import json
+import uuid
+import hashlib 
 
 load_dotenv()
 
@@ -68,7 +70,35 @@ def submit_todo_item():
         item_name = request.form["itemName"]
         item_description = request.form["itemDescription"]
 
+        # Generate Item ID
+        existing_items = todo_collection.find(
+            {"itemId": {"$exists": True}},
+            {"itemId": 1, "_id": 0}
+        )
+
+        item_ids = []
+
+        for item in existing_items:
+            if isinstance(item.get("itemId"), int):
+                item_ids.append(item["itemId"])
+
+        if item_ids:
+            item_id = max(item_ids) + 1
+        else:
+            item_id = 1
+
+        # Generate Item UUID
+        item_uuid = str(uuid.uuid4())
+
+        # Generate Item Hash
+        item_hash = hashlib.sha256(
+            f"{item_id}{item_uuid}{item_name}{item_description}".encode()
+        ).hexdigest()
+
         todo_item = {
+            "itemId": item_id,
+            "itemUuid": item_uuid,
+            "itemHash": item_hash,
             "itemName": item_name,
             "itemDescription": item_description
         }
@@ -79,7 +109,7 @@ def submit_todo_item():
 
     except Exception as e:
         return str(e), 500
-    
+
 if __name__ == "__main__":
     app.run(debug=True)
 
