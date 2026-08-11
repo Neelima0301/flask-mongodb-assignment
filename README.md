@@ -1,65 +1,190 @@
-# Flask MongoDB Form Project
+# Flask MongoDB Assignment
 
-This is my Flask project where I made a simple form.
+This project is part of my Flask and GitHub assignment. In this assignment, I worked with Flask, GitHub branches, JSON, MongoDB Atlas and a To-Do form.
 
-When the form is submitted, the data is saved in MongoDB Atlas.
+I completed the work by creating different branches, making the required changes, merging the branches and working with Git reset and rebase.
 
-I also made an `/api` route which reads data from `data.json` and returns it.
+## Technologies I Used
 
-## I used
+* Python
+* Flask
+* MongoDB Atlas
+* PyMongo
+* HTML
+* JSON
+* Git
+* GitHub
 
-- Python
-- Flask
-- MongoDB Atlas
-- PyMongo
-- HTML
-- JSON
-- python-dotenv
+## Project Files
 
-## Files in my project
+* `app.py` - Main Flask application
+* `data.json` - JSON data used by the `/api` route
+* `templates/index.html` - Student form
+* `templates/success.html` - Success page
+* `templates/todo.html` - To-Do form
+* `.env.example` - Example for MongoDB connection
+* `.gitignore` - Files to ignore in Git
+* `requirements.txt` - Required Python packages
+* `README.md` - Project information
 
-- `app.py` - Flask application
-- `data.json` - data used for the API
-- `index.html` - form page
-- `success.html` - page shown after successful submission
-- `.env.example` - example for the MongoDB connection
-- `.gitignore` - files that should not be uploaded
-- `requirements.txt` - required Python packages
+## Question 1 - GitHub Repository and Flask Project
 
-The HTML files are inside the `templates` folder.
+I created a GitHub repository and cloned it to my local system using SSH.
 
-## How I run the project
+I created a branch using my username and added the Flask project files to the branch.
 
-First I activate my virtual environment.
+After committing the changes, I merged the branch into the main branch.
 
-Then I install the required packages using:
+The Flask project also contains an `/api` route which reads the data from `data.json` and returns it as JSON.
 
+## Question 2 - JSON Update and Branch Merge
+
+I created a new branch named:
+
+```text
+Neelima_new
+```
+
+I updated the JSON file used by the `/api` route in this branch.
+
+After making the changes, I merged the branch into the main branch.
+
+The changes were committed and pushed to the GitHub repository.
+
+## Question 3 - To-Do Page and MongoDB Backend
+
+I created two branches from the main branch:
+
+```text
+master_1
+master_2
+```
+
+### master_1
+
+In the `master_1` branch, I created the To-Do page.
+
+The form contains:
+
+* Item Name
+* Item Description
+
+### master_2
+
+In the `master_2` branch, I created the backend route:
+
+```text
+/submittodoitem
+```
+
+This route accepts the To-Do item name and description using a POST request and stores the data in MongoDB Atlas.
+
+I then merged the changes from both branches into the main branch.
+
+## Question 4 - To-Do Item ID, UUID and Hash
+
+In the `master_1` branch, I added the following fields to the To-Do form:
+
+* Item ID
+* Item UUID
+* Item Hash
+
+I added and committed these fields separately in the required order.
+
+The commits were made as:
+
+1. Add Item ID field
+2. Add Item UUID field
+3. Add Item Hash field
+
+The changes were then merged into the main branch.
+
+### Git Reset
+
+After merging, I used `git reset --soft` to roll back the main branch to the commit where only the Item ID field was added.
+
+The changes were kept staged and I committed the required state again.
+
+### Git Rebase
+
+I then rebased the updated changes from the main branch into the `master_1` branch.
+
+I preserved the individual commits for Item ID, Item UUID and Item Hash instead of combining them into one commit.
+
+## MongoDB
+
+The Flask application uses MongoDB Atlas to store the submitted To-Do items.
+
+The database used in the project is:
+
+```text
+studentDB
+```
+
+The collections used are:
+
+```text
+students
+todoitems
+```
+
+Each To-Do item contains:
+
+```text
+itemId
+itemUuid
+itemHash
+itemName
+itemDescription
+```
+
+The Item UUID is generated using Python's UUID library.
+
+The Item Hash is generated using SHA-256.
+
+## API Routes
+
+The main routes used in the project are:
+
+```text
+/                  - Student form
+/success           - Success page
+/api               - Returns data from data.json
+/todo              - To-Do page
+/api/todos         - Returns To-Do items from MongoDB
+/submittodoitem    - Stores a To-Do item in MongoDB
+```
+
+## How I Run the Project
+
+First, I install the required packages:
+
+```bash
 pip install -r requirements.txt
+```
 
-I have a `.env` file in my project folder which contains my MongoDB connection string.
+I keep my MongoDB connection string in a `.env` file using:
 
-After that I run:
+```text
+MONGO_URI=your_mongodb_connection_string
+```
 
+Then I run the Flask application:
+
+```bash
 python app.py
+```
 
-Then I open this in my browser:
+The application can be opened at:
 
+```text
 http://127.0.0.1:5000
-
-## How the form works
-
-I enter the details in the form and click the submit button.
-
-Flask receives the form data and saves it in MongoDB Atlas.
-
-then the data is saved successfully, it opens the success page.
-
-and If there is any error, the error is shown on the same page.
-
-## API
-
-The `/api` route reads the data from `data.json` and returns it.
+```
 
 ## Note
 
-I have not included my `.env` file because it contains my MongoDB connection string.
+I have not included my `.env` file in the submission because it contains my MongoDB connection string.
+
+The `.env.example` file is included as an example.
+
+
