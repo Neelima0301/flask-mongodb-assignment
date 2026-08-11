@@ -1,1 +1,1 @@
-Version from conflict-demo-2
+Version after conflict resolution
