@@ -155,6 +155,19 @@ The main routes used in the project are:
 /submittodoitem    - Stores a To-Do item in MongoDB
 ```
 
+## Additional Git Evidence
+
+### Question 2 - Merge Conflict Resolution
+
+To demonstrate the required merge conflict resolution, I created a controlled conflict in `data.json`.
+
+The conflict occurred because `data.json` was modified in both the current branch and the `Neelima_new` branch.
+
+The merge command was:
+
+```bash
+git merge Neelima_new
+
 ## How I Run the Project
 
 First, I install the required packages:
