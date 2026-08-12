@@ -155,19 +155,6 @@ The main routes used in the project are:
 /submittodoitem    - Stores a To-Do item in MongoDB
 ```
 
-## Additional Git Evidence
-
-### Question 2 - Merge Conflict Resolution
-
-To demonstrate the required merge conflict resolution, I created a controlled conflict in `data.json`.
-
-The conflict occurred because `data.json` was modified in both the current branch and the `Neelima_new` branch.
-
-The merge command was:
-
-```bash
-git merge Neelima_new
-
 ## How I Run the Project
 
 First, I install the required packages:
@@ -201,3 +188,158 @@ I have not included my `.env` file in the submission because it contains my Mong
 The `.env.example` file is included as an example.
 
 
+## Additional Git Evidence
+
+### Question 2 - Merge Conflict Resolution
+
+To demonstrate the required merge conflict resolution, I created a controlled conflict in `data.json`.
+
+The conflict occurred because `data.json` was modified in both the current branch and the `Neelima_new` branch.
+
+The merge command was:
+
+```bash
+git merge Neelima_new
+```
+
+Git reported the conflict:
+
+```text
+Auto-merging data.json
+CONFLICT (content): Merge conflict in data.json
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+The conflict markers in `data.json` showed changes from both branches:
+
+```text
+[HEAD version]
+        "course": "Information Technology"
+
+[Neelima_new version]
+        "course": "Computer Science"
+    },
+    {
+        "id": 3,
+        "name": "Student 3",
+        "course": "Data Science"
+```
+
+As required, I resolved the conflict by accepting the changes from the `Neelima_new` branch:
+
+```bash
+git checkout --theirs data.json
+git add data.json
+git commit -m "Merge Neelima_new and resolve data.json conflict"
+```
+
+The final `data.json` contained the changes from `Neelima_new`:
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Neelima",
+        "course": "MCA"
+    },
+    {
+        "id": 2,
+        "name": "Student 2",
+        "course": "Computer Science"
+    },
+    {
+        "id": 3,
+        "name": "Student 3",
+        "course": "Data Science"
+    }
+]
+```
+
+The merge was completed successfully and the working tree was clean.
+
+### Question 5 - Git Reset --soft Evidence
+
+I demonstrated the `git reset --soft` operation using a separate evidence branch.
+
+The command used was:
+
+```bash
+git reset --soft 531bdf9
+```
+
+Immediately after the reset, `git status` showed that the changes were still staged:
+
+
+```text
+Changes to be committed:
+
+        modified:   app.py
+        modified:   templates/todo.html
+```
+
+This demonstrates that `git reset --soft` keeps changes staged.
+
+I then recommitted the staged changes:
+
+```bash
+git commit -m "Recommit changes after soft reset"
+```
+
+### Git Rebase Evidence
+
+I verified the rebase operation using:
+
+```bash
+git reflog --all --grep-reflog="rebase"
+```
+
+The reflog showed the rebase start, continuation and completion.
+
+The `master_1` history preserved the individual commits for the Item ID, Item UUID and Item Hash changes.
+
+### GitHub Repository Verification
+
+The completed project was pushed to the `master_1` branch of my GitHub repository.
+
+Repository:
+
+https://github.com/Neelima0301/flask-mongodb-assignment
+
+Final branch:
+
+```text
+master_1
+```
+
+Final commit:
+
+```text
+61103d6 Complete assignment requirements and production improvements
+```
+
+The final Git status was:
+
+```text
+On branch master_1
+Your branch is up to date with 'origin/master_1'.
+
+nothing to commit, working tree clean
+```
+
+### Submission Files Verification
+
+The submission contains the required project files:
+
+```text
+app.py
+data.json
+README.md
+.env.example
+.gitignore
+requirements.txt
+templates/index.html
+templates/todo.html
+templates/success.html
+```
+
+The `.env` file containing the MongoDB connection string is not included in the submission.
