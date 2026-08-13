@@ -1,59 +1,91 @@
 # Flask MongoDB Assignment
 
-This project is part of my Flask and GitHub assignment. In this assignment, I worked with Flask, GitHub branches, JSON, MongoDB Atlas and a To-Do form.
+This is my Flask and MongoDB assignment. In this project, I worked with Flask, MongoDB Atlas, HTML, JSON, Git and GitHub.
 
-I completed the work by creating different branches, making the required changes, merging the branches and working with Git reset and rebase.
+I also worked with Git branches, merging, merge conflicts, reset and rebase as required in the assignment.
 
-## Technologies I Used
+## Technologies Used
 
-* Python
-* Flask
-* MongoDB Atlas
-* PyMongo
-* HTML
-* JSON
-* Git
-* GitHub
+- Python
+- Flask
+- MongoDB Atlas
+- PyMongo
+- HTML
+- JSON
+- Git
+- GitHub
 
 ## Project Files
 
-* `app.py` - Main Flask application
-* `data.json` - JSON data used by the `/api` route
-* `templates/index.html` - Student form
-* `templates/success.html` - Success page
-* `templates/todo.html` - To-Do form
-* `.env.example` - Example for MongoDB connection
-* `.gitignore` - Files to ignore in Git
-* `requirements.txt` - Required Python packages
-* `README.md` - Project information
+- `app.py` - Main Flask application
+- `data.json` - JSON data used by the `/api` route
+- `templates/index.html` - Student registration form
+- `templates/todo.html` - To-Do form
+- `templates/success.html` - Success page
+- `.env.example` - Example MongoDB connection string
+- `.gitignore` - Files ignored by Git
+- `requirements.txt` - Required Python packages
+- `README.md` - Project information
+
+---
 
 ## Question 1 - GitHub Repository and Flask Project
 
-I created a GitHub repository and cloned it to my local system using SSH.
+First, I created the GitHub repository and cloned it to my computer.
 
-I created a branch using my username and added the Flask project files to the branch.
+I created a branch named:
 
-After committing the changes, I merged the branch into the main branch.
+```text
+Neelima0301
+```
 
-The Flask project also contains an `/api` route which reads the data from `data.json` and returns it as JSON.
+I added the Flask project files and committed the changes.
+
+The Flask application has an `/api` route. It reads the data from `data.json` and returns it as JSON.
+
+After completing the work, I merged the branch into the main branch.
+
+---
 
 ## Question 2 - JSON Update and Branch Merge
 
-I created a new branch named:
+For Question 2, I created a branch named:
 
 ```text
 Neelima_new
 ```
 
-I updated the JSON file used by the `/api` route in this branch.
+I updated `data.json` in this branch by adding the required student information.
 
-After making the changes, I merged the branch into the main branch.
+After that, I merged the branch into the main branch.
 
-The changes were committed and pushed to the GitHub repository.
+### Merge Conflict Evidence
+
+I also created a real merge conflict in `data.json` using a separate branch:
+
+```text
+q2-real-conflict
+```
+
+The merge was completed with this commit:
+
+```text
+e3edd2d Merge Neelima_new and resolve data.json conflict
+```
+
+The reflog shows the merge commit:
+
+```text
+e3edd2d HEAD@{Wed Aug 12 19:54:16 2026}: commit (merge): Merge Neelima_new and resolve data.json conflict
+```
+
+I resolved the conflict in `data.json` and committed the final result.
+
+---
 
 ## Question 3 - To-Do Page and MongoDB Backend
 
-I created two branches from the main branch:
+For this question, I created two branches:
 
 ```text
 master_1
@@ -62,73 +94,124 @@ master_2
 
 ### master_1
 
-In the `master_1` branch, I created the To-Do page.
+I worked on the To-Do page in `master_1`.
 
 The form contains:
 
-* Item Name
-* Item Description
+- Item Name
+- Item Description
 
 ### master_2
 
-In the `master_2` branch, I created the backend route:
+I worked on the backend in `master_2`.
+
+The backend route is:
 
 ```text
 /submittodoitem
 ```
 
-This route accepts the To-Do item name and description using a POST request and stores the data in MongoDB Atlas.
+This route receives the To-Do item details and stores them in MongoDB.
 
-I then merged the changes from both branches into the main branch.
+The To-Do items are stored in the:
 
-## Question 4 - To-Do Item ID, UUID and Hash
+```text
+todoitems
+```
 
-In the `master_1` branch, I added the following fields to the To-Do form:
+collection.
 
-* Item ID
-* Item UUID
-* Item Hash
+---
 
-I added and committed these fields separately in the required order.
+## Question 4 - Item ID, UUID and Hash
 
-The commits were made as:
+I worked on the Item ID, UUID and Hash changes using separate Git commits.
 
-1. Add Item ID field
-2. Add Item UUID field
-3. Add Item Hash field
+The actual commits in my Git history are:
 
-The changes were then merged into the main branch.
+```text
+531bdf9 Add Item ID field
+4cc8270 Add Item UUID field
+ff4ede8 Add generated Item ID UUID and Hash
+```
 
-### Git Reset
+These changes were made in separate commits.
 
-After merging, I used `git reset --soft` to roll back the main branch to the commit where only the Item ID field was added.
+In the final application, the Item ID, UUID and Hash are generated by the Flask backend when a To-Do item is submitted.
 
-The changes were kept staged and I committed the required state again.
+The generated fields are:
 
-### Git Rebase
+```text
+itemId
+itemUuid
+itemHash
+```
 
-I then rebased the updated changes from the main branch into the `master_1` branch.
+The UUID is generated using Python's `uuid` library.
 
-I preserved the individual commits for Item ID, Item UUID and Item Hash instead of combining them into one commit.
+The hash is generated using SHA-256.
+
+---
+
+## Git Reset --soft Evidence
+
+I also demonstrated `git reset --soft` using a separate evidence branch:
+
+```text
+q5-soft-reset-evidence
+```
+
+The reflog shows the reset:
+
+```text
+531bdf9 refs/heads/q5-soft-reset-evidence@{Wed Aug 12 19:56:04 2026}: reset: moving to 531bdf9
+531bdf9 HEAD@{Wed Aug 12 19:56:04 2026}: reset: moving to 531bdf9
+```
+
+After the reset, I recommitted the changes with:
+
+```text
+02443d2 Recommit changes after soft reset
+```
+
+This demonstrates the use of `git reset --soft`.
+
+---
+
+## Git Rebase Evidence
+
+I also used Git rebase and checked the reflog to verify it.
+
+The actual reflog shows:
+
+```text
+10cdeb3 HEAD@{Tue Aug 11 18:44:14 2026}: rebase (start): checkout main
+4cc8270 HEAD@{Tue Aug 11 18:50:58 2026}: rebase (continue): Add Item UUID field
+4cc8270 HEAD@{Tue Aug 11 18:54:55 2026}: rebase (finish): returning to refs/heads/master_1
+```
+
+This shows the start, continuation and completion of the rebase.
+
+---
 
 ## MongoDB
 
-The Flask application uses MongoDB Atlas to store the submitted To-Do items.
+I used MongoDB Atlas to store the data.
 
-The database used in the project is:
+The database name is:
 
 ```text
 studentDB
 ```
 
-The collections used are:
+The collections are:
 
 ```text
 students
 todoitems
 ```
 
-Each To-Do item contains:
+The To-Do documents contain:
 
 ```text
 itemId
@@ -138,24 +221,93 @@ itemName
 itemDescription
 ```
 
-The Item UUID is generated using Python's UUID library.
+---
 
-The Item Hash is generated using SHA-256.
+## Flask Routes
 
-## API Routes
-
-The main routes used in the project are:
+The main routes in my application are:
 
 ```text
-/                  - Student form
+/                  - Student registration form
+/submit            - Submit student information
 /success           - Success page
 /api               - Returns data from data.json
 /todo              - To-Do page
-/api/todos         - Returns To-Do items from MongoDB
-/submittodoitem    - Stores a To-Do item in MongoDB
+/submittodoitem    - Submit a To-Do item
+/api/todos         - Get To-Do items from MongoDB
 ```
 
-## How I Run the Project
+---
+
+## requirements.txt
+
+My `requirements.txt` contains:
+
+```text
+Flask==3.1.3
+pymongo==4.17.0
+python-dotenv==1.2.2
+```
+
+---
+
+## .gitignore
+
+My `.gitignore` contains:
+
+```text
+.env
+venv/
+__pycache__/
+*.pyc
+```
+
+The `.env` file is ignored because it contains my MongoDB connection string.
+
+---
+
+## .env.example
+
+I included `.env.example` with a sample MongoDB connection string:
+
+```text
+MONGO_URI=mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/?appName=Cluster0
+```
+
+I did not include my actual `.env` file in the submission.
+
+---
+
+## GitHub Repository
+
+My GitHub repository is:
+
+```text
+https://github.com/Neelima0301/flask-mongodb-assignment
+```
+
+The final working branch is:
+
+```text
+master_1
+```
+
+The final commit on this branch is:
+
+8b5a2a1 Add complete Git evidence and submission verification
+
+The branch was pushed to GitHub and verified with:
+
+```text
+On branch master_1
+Your branch is up to date with 'origin/master_1'.
+
+nothing to commit, working tree clean
+```
+
+---
+
+## How to Run the Project
 
 First, I install the required packages:
 
@@ -163,7 +315,7 @@ First, I install the required packages:
 pip install -r requirements.txt
 ```
 
-I keep my MongoDB connection string in a `.env` file using:
+Then I create a `.env` file and add my MongoDB connection string:
 
 ```text
 MONGO_URI=your_mongodb_connection_string
@@ -175,160 +327,17 @@ Then I run the Flask application:
 python app.py
 ```
 
-The application can be opened at:
+The application runs at:
 
 ```text
 http://127.0.0.1:5000
 ```
 
-## Note
+---
 
-I have not included my `.env` file in the submission because it contains my MongoDB connection string.
+## Submission Files
 
-The `.env.example` file is included as an example.
-
-
-## Additional Git Evidence
-
-### Question 2 - Merge Conflict Resolution
-
-To demonstrate the required merge conflict resolution, I created a controlled conflict in `data.json`.
-
-The conflict occurred because `data.json` was modified in both the current branch and the `Neelima_new` branch.
-
-The merge command was:
-
-```bash
-git merge Neelima_new
-```
-
-Git reported the conflict:
-
-```text
-Auto-merging data.json
-CONFLICT (content): Merge conflict in data.json
-Automatic merge failed; fix conflicts and then commit the result.
-```
-
-The conflict markers in `data.json` showed changes from both branches:
-
-```text
-[HEAD version]
-        "course": "Information Technology"
-
-[Neelima_new version]
-        "course": "Computer Science"
-    },
-    {
-        "id": 3,
-        "name": "Student 3",
-        "course": "Data Science"
-```
-
-As required, I resolved the conflict by accepting the changes from the `Neelima_new` branch:
-
-```bash
-git checkout --theirs data.json
-git add data.json
-git commit -m "Merge Neelima_new and resolve data.json conflict"
-```
-
-The final `data.json` contained the changes from `Neelima_new`:
-
-```json
-[
-    {
-        "id": 1,
-        "name": "Neelima",
-        "course": "MCA"
-    },
-    {
-        "id": 2,
-        "name": "Student 2",
-        "course": "Computer Science"
-    },
-    {
-        "id": 3,
-        "name": "Student 3",
-        "course": "Data Science"
-    }
-]
-```
-
-The merge was completed successfully and the working tree was clean.
-
-### Question 5 - Git Reset --soft Evidence
-
-I demonstrated the `git reset --soft` operation using a separate evidence branch.
-
-The command used was:
-
-```bash
-git reset --soft 531bdf9
-```
-
-Immediately after the reset, `git status` showed that the changes were still staged:
-
-
-```text
-Changes to be committed:
-
-        modified:   app.py
-        modified:   templates/todo.html
-```
-
-This demonstrates that `git reset --soft` keeps changes staged.
-
-I then recommitted the staged changes:
-
-```bash
-git commit -m "Recommit changes after soft reset"
-```
-
-### Git Rebase Evidence
-
-I verified the rebase operation using:
-
-```bash
-git reflog --all --grep-reflog="rebase"
-```
-
-The reflog showed the rebase start, continuation and completion.
-
-The `master_1` history preserved the individual commits for the Item ID, Item UUID and Item Hash changes.
-
-### GitHub Repository Verification
-
-The completed project was pushed to the `master_1` branch of my GitHub repository.
-
-Repository:
-
-https://github.com/Neelima0301/flask-mongodb-assignment
-
-Final branch:
-
-```text
-master_1
-```
-
-Final commit:
-
-```text
-61103d6 Complete assignment requirements and production improvements
-```
-
-The final Git status was:
-
-```text
-On branch master_1
-Your branch is up to date with 'origin/master_1'.
-
-nothing to commit, working tree clean
-```
-
-### Submission Files Verification
-
-The submission contains the required project files:
+The submission contains:
 
 ```text
 app.py
@@ -342,4 +351,4 @@ templates/todo.html
 templates/success.html
 ```
 
-The `.env` file containing the MongoDB connection string is not included in the submission.
+The actual `.env` file is not included because it contains my private MongoDB connection string.
