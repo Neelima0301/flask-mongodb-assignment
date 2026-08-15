@@ -219,20 +219,8 @@ The main routes in my application are:
 /todo              - To-Do page
 /submittodoitem    - Submit a To-Do item
 /api/todos         - Get To-Do items from MongoDB
-/health            - Check application and MongoDB health
 
----
-
-## Input Validation and Error Handling
-
-I added basic input validation to the Flask application.
-
-The application checks that required text fields are not empty and also applies maximum length limits.
-
-MongoDB errors and unexpected application errors are handled with appropriate error responses and logging.
-
-The /health route can be used to check whether the application can connect to MongoDB.
-
+The /submittodoitem route generates the Item ID, Item UUID and Item Hash before storing the To-Do item in MongoDB.
 ---
 
 ## requirements.txt
@@ -278,7 +266,7 @@ The final working branch is:
 
 master_1
 
-The latest README update was committed to the local master_1 branch.
+The final project files are maintained on the master_1 branch.
 
 ---
 
